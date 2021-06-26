@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.lsefiane</groupId>
-	<artifactId>publiser-service</artifactId>
+	<artifactId>publisher-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>publiser-service</name>
+	<name>publisher-service</name>
 	<description>Spring Boot JMS with ActiveMQ Publisher</description>
 	<properties>
 		<java.version>11</java.version>

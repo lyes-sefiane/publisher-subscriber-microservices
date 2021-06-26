@@ -13,6 +13,7 @@
 		<java.version>11</java.version>
 	</properties>
 	<modules>
+		<module>publisher-subscriber-common</module>
 		<module>publisher-service</module>
 		<module>subscriber-service</module>
 	</modules>

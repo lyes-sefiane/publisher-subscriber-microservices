@@ -1,0 +1,45 @@
+version: '3'
+services:
+   apache-activemq:
+      image: lsefiane/activemq:latest
+      container_name: apache-activemq
+      restart: always
+      build:
+         context: .
+         dockerfile: ./docker/apache-activemq/5.16.2/Dockerfile
+      ports:
+      - '8161:8161'
+      - '61616:61616'
+      depends_on:
+      - publisher-service
+      - subscriber-service
+      networks:
+      - microservices
+   publisher-service:
+      image: lsefiane/publisher-service:latest
+      container_name: publisher-service
+      restart: always
+      build:
+         context: .
+         dockerfile: ./docker/publisher-service/Dockerfile
+      deploy:
+         mode: replicated
+         replicas: 1
+      networks:
+      - microservices
+   subscriber-service:
+      image: lsefiane/subscriber-service:latest
+      container_name: subscriber-service
+      restart: always
+      build:
+         context: .
+         dockerfile: ./docker/subscriber-service/Dockerfile
+      deploy:
+         mode: replicated
+         replicas: 1
+      networks:
+      - microservices
+networks:
+   microservices:
+      driver: bridge
+   

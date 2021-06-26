@@ -14,6 +14,7 @@
 	</properties>
 	<modules>
 		<module>publisher-service</module>
+		<module>subscriber-service</module>
 	</modules>
 
 </project>

@@ -25,6 +25,11 @@ services:
       deploy:
          mode: replicated
          replicas: 1
+      environment:
+      - SPRING_ACTIVEMQ_BROKER_URL=${SPRING_ACTIVEMQ_BROKER_URL}
+      - SPRING_ACTIVEMQ_USER=${SPRING_ACTIVEMQ_USER}
+      - SPRING_ACTIVEMQ_PASSWORD=${SPRING_ACTIVEMQ_PASSWORD}
+      - SPRING_JMS_LISTENER_AUTO_STARTUP=${SPRING_JMS_LISTENER_AUTO_STARTUP}   
       networks:
       - microservices
    subscriber-service:
@@ -37,6 +42,11 @@ services:
       deploy:
          mode: replicated
          replicas: 1
+      environment:
+      - SPRING_ACTIVEMQ_BROKER_URL=${SPRING_ACTIVEMQ_BROKER_URL}
+      - SPRING_ACTIVEMQ_USER=${SPRING_ACTIVEMQ_USER}
+      - SPRING_ACTIVEMQ_PASSWORD=${SPRING_ACTIVEMQ_PASSWORD}  
+      - SPRING_JMS_LISTENER_AUTO_STARTUP=${SPRING_JMS_LISTENER_AUTO_STARTUP}      
       networks:
       - microservices
 networks:

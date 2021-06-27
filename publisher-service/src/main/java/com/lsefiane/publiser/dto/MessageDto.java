@@ -1,7 +1,8 @@
-package com.lsefiane.common.entities;
+package com.lsefiane.publiser.dto;
+
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,23 +11,22 @@ import lombok.ToString;
 
 /**
  * 
- * Message.java
+ * MessageDto.java
  *
  * @author Lyes Sefiane
  * @email lyes.sefiane@gmail.com
- * @date Jun. 26, 2021
+ * @date Jun. 27, 2021
  *
  */
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
-@Builder
 @ToString
-public class Message {
-
-	private String timestamp;
+public class MessageDto {
+	
+	@NotBlank(message = "message body should not be empty")
 	private String messageBody;
 
 }

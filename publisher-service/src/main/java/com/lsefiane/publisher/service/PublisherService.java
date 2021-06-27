@@ -31,16 +31,4 @@ public class PublisherService {
 		jmsSender.sendMessageToVirtualTopic(message);
 		return message;
 	}
-
-	public Message sendMessageToQueue(MessageDto messageDto) {
-		var message = converter.convert(messageDto);
-		jmsSender.sendMessageToQueue(message);
-		return message;
-	}
-
-	public Message sendMessageToTopic(MessageDto messageDto) {
-		var message = converter.convert(messageDto);
-		jmsSender.sendMessageToTopic(message);
-		return message;
-	}
 }

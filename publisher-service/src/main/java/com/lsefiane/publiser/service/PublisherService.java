@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lsefiane.common.entities.Message;
+import com.lsefiane.publiser.converter.DtoToEntityConverter;
+import com.lsefiane.publiser.dto.MessageDto;
 import com.lsefiane.publiser.jms.JmsSender;
 
 /**
@@ -21,15 +23,24 @@ public class PublisherService {
 	@Autowired
 	private JmsSender jmsSender;
 
-	public void sendMessageToVirtualTopic(String messageBody) {
-		jmsSender.sendMessageToVirtualTopic(new Message(messageBody));
+	@Autowired
+	private DtoToEntityConverter converter;
+
+	public Message sendMessageToVirtualTopic(MessageDto messageDto) {
+		var message = converter.convert(messageDto);
+		jmsSender.sendMessageToVirtualTopic(message);
+		return message;
 	}
 
-	public void sendMessageToQueue(String messageBody) {
-		jmsSender.sendMessageToQueue(new Message(messageBody));
+	public Message sendMessageToQueue(MessageDto messageDto) {
+		var message = converter.convert(messageDto);
+		jmsSender.sendMessageToQueue(message);
+		return message;
 	}
 
-	public void sendMessageToTopic(String messageBody) {
-		jmsSender.sendMessageToTopic(new Message(messageBody));
+	public Message sendMessageToTopic(MessageDto messageDto) {
+		var message = converter.convert(messageDto);
+		jmsSender.sendMessageToTopic(message);
+		return message;
 	}
 }

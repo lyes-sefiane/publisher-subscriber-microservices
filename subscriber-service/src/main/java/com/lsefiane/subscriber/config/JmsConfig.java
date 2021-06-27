@@ -1,5 +1,7 @@
 package com.lsefiane.subscriber.config;
 
+import javax.jms.ConnectionFactory;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
@@ -23,9 +25,19 @@ import org.springframework.jms.support.converter.MessageType;
 public class JmsConfig {
 
 	@Bean
-	public JmsListenerContainerFactory<?> topicListenerFactory() {
+	public JmsListenerContainerFactory<?> jmsListenerContainerQueue(ConnectionFactory connectionFactory) {
 		var factory = new DefaultJmsListenerContainerFactory();
 		factory.setMessageConverter(jacksonJmsMessageConverter());
+		factory.setConnectionFactory(connectionFactory);
+		return factory;
+	}
+	
+	@Bean
+	public JmsListenerContainerFactory<?> jmsListenerContainerTopic(ConnectionFactory connectionFactory) {
+		var factory = new DefaultJmsListenerContainerFactory();
+		factory.setMessageConverter(jacksonJmsMessageConverter());
+		factory.setPubSubDomain(true);
+		factory.setConnectionFactory(connectionFactory);
 		return factory;
 	}
 

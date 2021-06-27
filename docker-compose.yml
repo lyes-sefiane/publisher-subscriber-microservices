@@ -17,7 +17,6 @@ services:
       - microservices
    publisher-service:
       image: lsefiane/publisher-service:latest
-      container_name: publisher-service
       restart: always
       build:
          context: .
@@ -34,14 +33,13 @@ services:
       - microservices
    subscriber-service:
       image: lsefiane/subscriber-service:latest
-      container_name: subscriber-service
       restart: always
       build:
          context: .
          dockerfile: ./docker/subscriber-service/Dockerfile
       deploy:
          mode: replicated
-         replicas: 1
+         replicas: 3
       environment:
       - SPRING_ACTIVEMQ_BROKER_URL=${SPRING_ACTIVEMQ_BROKER_URL}
       - SPRING_ACTIVEMQ_USER=${SPRING_ACTIVEMQ_USER}

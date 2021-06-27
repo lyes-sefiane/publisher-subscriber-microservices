@@ -1,7 +1,6 @@
 package com.lsefiane.publiser.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 
 import com.lsefiane.common.entities.Message;
@@ -16,14 +15,21 @@ import com.lsefiane.publiser.jms.JmsSender;
  * @date Jun. 26, 2021
  *
  */
-@EnableScheduling
 @Service
 public class PublisherService {
 
 	@Autowired
 	private JmsSender jmsSender;
 
-	public void sendMessage(String messageBody) {
+	public void sendMessageToVirtualTopic(String messageBody) {
 		jmsSender.sendMessageToVirtualTopic(new Message(messageBody));
+	}
+
+	public void sendMessageToQueue(String messageBody) {
+		jmsSender.sendMessageToQueue(new Message(messageBody));
+	}
+
+	public void sendMessageToTopic(String messageBody) {
+		jmsSender.sendMessageToTopic(new Message(messageBody));
 	}
 }

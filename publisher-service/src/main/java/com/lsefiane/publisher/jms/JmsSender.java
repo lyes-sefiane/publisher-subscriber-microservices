@@ -1,4 +1,4 @@
-package com.lsefiane.publiser.jms;
+package com.lsefiane.publisher.jms;
 
 import org.apache.activemq.command.ActiveMQQueue;
 import org.apache.activemq.command.ActiveMQTopic;

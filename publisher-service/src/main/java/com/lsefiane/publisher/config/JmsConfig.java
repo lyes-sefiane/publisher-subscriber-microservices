@@ -1,4 +1,4 @@
-package com.lsefiane.publiser.config;
+package com.lsefiane.publisher.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

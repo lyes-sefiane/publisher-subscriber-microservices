@@ -1,4 +1,4 @@
-package com.lsefiane.publiser.controller;
+package com.lsefiane.publisher.controller;
 
 import javax.validation.Valid;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lsefiane.common.entities.Message;
-import com.lsefiane.publiser.dto.MessageDto;
-import com.lsefiane.publiser.service.PublisherService;
+import com.lsefiane.publisher.dto.MessageDto;
+import com.lsefiane.publisher.service.PublisherService;
 
 /**
  * 

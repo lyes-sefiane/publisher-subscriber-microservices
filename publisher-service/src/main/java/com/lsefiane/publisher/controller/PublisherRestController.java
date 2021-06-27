@@ -24,23 +24,13 @@ import com.lsefiane.publisher.service.PublisherService;
 @RestController
 @RequestMapping("/publisher/")
 public class PublisherRestController {
-	
+
 	@Autowired
 	private PublisherService publisherService;
-	
+
 	@PostMapping("publish/virtual-topic")
 	public Message publishToVirtualTopic(@RequestBody @Valid MessageDto messageDto) {
 		return publisherService.sendMessageToVirtualTopic(messageDto);
-	}
-	
-	@PostMapping("publish/queue")
-	public Message publishToQueue(@RequestBody @Valid MessageDto messageDto) {
-		return publisherService.sendMessageToQueue(messageDto);
-	}
-	
-	@PostMapping("publish/topic")
-	public Message publishToTopic(@RequestBody @Valid MessageDto messageDto) {
-		return publisherService.sendMessageToTopic(messageDto);
 	}
 
 }

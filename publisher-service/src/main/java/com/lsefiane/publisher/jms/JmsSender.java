@@ -1,6 +1,5 @@
 package com.lsefiane.publisher.jms;
 
-import org.apache.activemq.command.ActiveMQQueue;
 import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,25 +30,9 @@ public class JmsSender {
 
 	@Value("${activemq.virtual.topic.message}")
 	private String virtualTopicMessage;
-	
-	@Value("${activemq.queue.message}")
-	private String queueMessage;
-	
-	@Value("${activemq.topic.message}")
-	private String topicMessage;
 
 	public void sendMessageToVirtualTopic(Message message) {
 		log.info(SENDING_TO, message, virtualTopicMessage);
 		jmsTemplate.convertAndSend(new ActiveMQTopic(virtualTopicMessage), message);
-	}
-
-	public void sendMessageToQueue(Message message) {
-		log.info(SENDING_TO, message, queueMessage);
-		jmsTemplate.convertAndSend(new ActiveMQQueue(queueMessage), message);
-	}
-	
-	public void sendMessageToTopic(Message message) {
-		log.info(SENDING_TO, message, topicMessage);
-		jmsTemplate.convertAndSend(new ActiveMQTopic(topicMessage), message);
 	}
 }

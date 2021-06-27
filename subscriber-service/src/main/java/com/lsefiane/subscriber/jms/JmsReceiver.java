@@ -22,18 +22,8 @@ public class JmsReceiver {
 
 	private static final String RECEIVED = "Received : {}";
 
-	@JmsListener(destination = "${activemq.consumer.virtual.topic.message}", containerFactory="jmsListenerContainerQueue")
+	@JmsListener(destination = "${activemq.consumer.virtual.topic.message}", containerFactory = "jmsListenerContainerQueue")
 	public void receiveMessageVirtualTopic(Message message) {
-		log.info(RECEIVED, message.toString());
-	}
-	
-	@JmsListener(destination = "${activemq.queue.message}", containerFactory="jmsListenerContainerQueue")
-	public void receiveMessageQueue(Message message) {
-		log.info(RECEIVED, message.toString());
-	}
-	
-	@JmsListener(destination = "${activemq.topic.message}", containerFactory="jmsListenerContainerTopic")
-	public void receiveMessageTopic(Message message) {
 		log.info(RECEIVED, message.toString());
 	}
 

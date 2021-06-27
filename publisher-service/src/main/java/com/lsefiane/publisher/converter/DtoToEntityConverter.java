@@ -1,4 +1,4 @@
-package com.lsefiane.publiser.converter;
+package com.lsefiane.publisher.converter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -7,7 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import com.lsefiane.common.entities.Message;
-import com.lsefiane.publiser.dto.MessageDto;
+import com.lsefiane.publisher.dto.MessageDto;
 
 /**
  * 

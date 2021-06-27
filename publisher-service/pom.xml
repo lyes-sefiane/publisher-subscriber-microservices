@@ -65,7 +65,7 @@
 						</goals>
 						<configuration>
 							<finalName>${project.build.finalName}-jar-with-dependencies</finalName>
-							<mainClass>com.lsefiane.publiser.PubliserServiceApplication</mainClass>
+							<mainClass>com.lsefiane.publisher.PublisherServiceApplication</mainClass>
 						</configuration>
 					</execution>
 				</executions>

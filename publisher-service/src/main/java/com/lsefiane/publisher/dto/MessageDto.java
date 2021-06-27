@@ -1,4 +1,4 @@
-package com.lsefiane.publiser.dto;
+package com.lsefiane.publisher.dto;
 
 import javax.validation.constraints.NotBlank;
 

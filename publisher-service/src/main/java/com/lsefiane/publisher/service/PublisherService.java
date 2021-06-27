@@ -1,12 +1,12 @@
-package com.lsefiane.publiser.service;
+package com.lsefiane.publisher.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lsefiane.common.entities.Message;
-import com.lsefiane.publiser.converter.DtoToEntityConverter;
-import com.lsefiane.publiser.dto.MessageDto;
-import com.lsefiane.publiser.jms.JmsSender;
+import com.lsefiane.publisher.converter.DtoToEntityConverter;
+import com.lsefiane.publisher.dto.MessageDto;
+import com.lsefiane.publisher.jms.JmsSender;
 
 /**
  * 

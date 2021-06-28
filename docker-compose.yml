@@ -10,11 +10,19 @@ services:
       ports:
       - '8161:8161'
       - '61616:61616'
-      depends_on:
-      - publisher-service
-      - subscriber-service
       networks:
       - microservices
+   hashicorp-consul:
+      image: consul:latest
+      container_name: hashicorp-consul
+      command: agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0
+      restart: always
+      ports:
+      - '8500:8500'
+      networks:
+      - microservices
+      environment:
+      - CONSUL_BIND_INTERFACE=eth0
    gateway-service:
       image: lsefiane/gateway-service:latest
       container_name: gateway-service
@@ -24,8 +32,14 @@ services:
          dockerfile: ./docker/gateway-service/Dockerfile
       ports:
       - '8080:8080'
+      depends_on:
+      - hashicorp-consul
       networks:
       - microservices
+      environment:
+      - SPRING_CLOUD_CONSUL_ENABLED=${SPRING_CLOUD_CONSUL_ENABLED}
+      - SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_ENABLED=${SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_ENABLED}
+      - SPRING_CLOUD_CONSUL_HOST=${SPRING_CLOUD_CONSUL_HOST}
    publisher-service:
       image: lsefiane/publisher-service:latest
       restart: always
@@ -34,12 +48,17 @@ services:
          dockerfile: ./docker/publisher-service/Dockerfile
       deploy:
          mode: replicated
-         replicas: 1
+         replicas: 2
+      depends_on:
+      - apache-activemq
+      - hashicorp-consul
       environment:
       - SPRING_ACTIVEMQ_BROKER_URL=${SPRING_ACTIVEMQ_BROKER_URL}
       - SPRING_ACTIVEMQ_USER=${SPRING_ACTIVEMQ_USER}
       - SPRING_ACTIVEMQ_PASSWORD=${SPRING_ACTIVEMQ_PASSWORD}
       - SPRING_JMS_LISTENER_AUTO_STARTUP=${SPRING_JMS_LISTENER_AUTO_STARTUP}   
+      - SPRING_CLOUD_CONSUL_ENABLED=${SPRING_CLOUD_CONSUL_ENABLED}
+      - SPRING_CLOUD_CONSUL_HOST=${SPRING_CLOUD_CONSUL_HOST}
       networks:
       - microservices
    subscriber-service:
@@ -51,11 +70,16 @@ services:
       deploy:
          mode: replicated
          replicas: 3
+      depends_on:
+      - apache-activemq
+      - hashicorp-consul
       environment:
       - SPRING_ACTIVEMQ_BROKER_URL=${SPRING_ACTIVEMQ_BROKER_URL}
       - SPRING_ACTIVEMQ_USER=${SPRING_ACTIVEMQ_USER}
       - SPRING_ACTIVEMQ_PASSWORD=${SPRING_ACTIVEMQ_PASSWORD}  
-      - SPRING_JMS_LISTENER_AUTO_STARTUP=${SPRING_JMS_LISTENER_AUTO_STARTUP}      
+      - SPRING_JMS_LISTENER_AUTO_STARTUP=${SPRING_JMS_LISTENER_AUTO_STARTUP}     
+      - SPRING_CLOUD_CONSUL_ENABLED=${SPRING_CLOUD_CONSUL_ENABLED} 
+      - SPRING_CLOUD_CONSUL_HOST=${SPRING_CLOUD_CONSUL_HOST}
       networks:
       - microservices
 networks:

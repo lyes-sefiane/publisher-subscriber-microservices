@@ -15,6 +15,17 @@ services:
       - subscriber-service
       networks:
       - microservices
+   gateway-service:
+      image: lsefiane/gateway-service:latest
+      container_name: gateway-service
+      restart: always
+      build:
+         context: .
+         dockerfile: ./docker/gateway-service/Dockerfile
+      ports:
+      - '8080:8080'
+      networks:
+      - microservices
    publisher-service:
       image: lsefiane/publisher-service:latest
       restart: always

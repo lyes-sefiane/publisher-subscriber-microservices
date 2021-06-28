@@ -1,9 +1,8 @@
 # Publisher/Subscriber
 
 ## Wiki
-```
-https://github.com/lsefiane/publisher-subscriber-microservices/wiki
-```
+
+[publisher-subscriber-microservices/wiki](https://github.com/lsefiane/publisher-subscriber-microservices/wiki)
 
 ## Architecture
 

@@ -16,6 +16,7 @@
 		<module>publisher-subscriber-common</module>
 		<module>publisher-service</module>
 		<module>subscriber-service</module>
+		<module>gateway-service</module>
 	</modules>
 
 </project>

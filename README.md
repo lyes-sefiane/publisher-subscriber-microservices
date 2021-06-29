@@ -1,4 +1,4 @@
-# Publisher/Subscriber
+# Publisher/Subscriber Microservices Sample
 
 ## Wiki
 

@@ -1,5 +1,13 @@
 version: '3'
 services:
+   openzipkin-zipkin:
+      image: openzipkin/zipkin:latest
+      container_name: openzipkin-zipkin
+      restart: always
+      ports:
+      - '9411:9411'
+      networks:
+      - microservices
    apache-activemq:
       image: lsefiane/activemq:latest
       container_name: apache-activemq
@@ -40,6 +48,9 @@ services:
       - SPRING_CLOUD_CONSUL_ENABLED=${SPRING_CLOUD_CONSUL_ENABLED}
       - SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_ENABLED=${SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_ENABLED}
       - SPRING_CLOUD_CONSUL_HOST=${SPRING_CLOUD_CONSUL_HOST}
+      - SPRING_CLOUD_CONSUL_PORT=${SPRING_CLOUD_CONSUL_PORT}
+      - SPRING_ZIPKIN_ENABLED=${SPRING_ZIPKIN_ENABLED}
+      - SPRING_ZIPKIN_BASE_URL=${SPRING_ZIPKIN_BASE_URL}      
    publisher-service:
       image: lsefiane/publisher-service:latest
       restart: always
@@ -59,6 +70,9 @@ services:
       - SPRING_JMS_LISTENER_AUTO_STARTUP=${SPRING_JMS_LISTENER_AUTO_STARTUP}   
       - SPRING_CLOUD_CONSUL_ENABLED=${SPRING_CLOUD_CONSUL_ENABLED}
       - SPRING_CLOUD_CONSUL_HOST=${SPRING_CLOUD_CONSUL_HOST}
+      - SPRING_CLOUD_CONSUL_PORT=${SPRING_CLOUD_CONSUL_PORT}
+      - SPRING_ZIPKIN_ENABLED=${SPRING_ZIPKIN_ENABLED}
+      - SPRING_ZIPKIN_BASE_URL=${SPRING_ZIPKIN_BASE_URL}
       networks:
       - microservices
    subscriber-service:
@@ -80,6 +94,8 @@ services:
       - SPRING_JMS_LISTENER_AUTO_STARTUP=${SPRING_JMS_LISTENER_AUTO_STARTUP}     
       - SPRING_CLOUD_CONSUL_ENABLED=${SPRING_CLOUD_CONSUL_ENABLED} 
       - SPRING_CLOUD_CONSUL_HOST=${SPRING_CLOUD_CONSUL_HOST}
+      - SPRING_ZIPKIN_ENABLED=${SPRING_ZIPKIN_ENABLED}
+      - SPRING_ZIPKIN_BASE_URL=${SPRING_ZIPKIN_BASE_URL}
       networks:
       - microservices
 networks:

@@ -2,7 +2,7 @@
 
 ## Wiki
 
-[publisher-subscriber-microservices/wiki](https://github.com/lsefiane/publisher-subscriber-microservices/wiki)
+[lsefiane/publisher-subscriber-microservices/wiki/](https://github.com/lsefiane/publisher-subscriber-microservices/wiki)
 
 ## Architecture
 

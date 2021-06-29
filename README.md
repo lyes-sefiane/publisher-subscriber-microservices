@@ -6,7 +6,7 @@
 
 ## Architecture
 
-https://raw.githubusercontent.com/wiki/lsefiane/publisher-subscriber-microservices/images/PubSub%20Microservices%20Architecture.PNG
+![Image](https://raw.githubusercontent.com/wiki/lsefiane/publisher-subscriber-microservices/images/PubSub%20Microservices%20Architecture.PNG)
 
 ## Requirements
 

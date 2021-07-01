@@ -59,7 +59,7 @@ Body
 
 * OpenApi Implementation 
 * Error Handling Implementation 
-* JPA/Hibernate Implementation
+* Database access/storage Implementation
 * Security Implementation
 
 ## Contributing

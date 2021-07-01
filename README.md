@@ -57,6 +57,7 @@ Body
 
 ## Enhancements
 
+* OpenApi Implementation 
 * Error Handling Implementation 
 * JPA/Hibernate Implementation
 * Security Implementation

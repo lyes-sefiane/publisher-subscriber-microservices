@@ -2,7 +2,7 @@
 
 ## Wiki
 
-[lsefiane/publisher-subscriber-microservices/wiki/](https://github.com/lsefiane/publisher-subscriber-microservices/wiki)
+[lsefiane/publisher-subscriber-microservices/wiki/Event-Driven-Microservices](https://github.com/lsefiane/publisher-subscriber-microservices/wiki/Event-Driven-Microservices)
 
 ## Architecture
 
@@ -42,6 +42,24 @@ mvn clean install
 docker-compose --env-file .env up -d
 
 ```
+
+## Testing
+
+```
+POST : localhost:8080/publisher/publish/virtual-topic
+
+Body
+{
+    "messageBody": "Hello Virtual Topic !"
+}
+
+```
+
+## Enhancements
+
+* Error Handling Implementation 
+* JPA/Hibernate Implementation
+* Security Implementation
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

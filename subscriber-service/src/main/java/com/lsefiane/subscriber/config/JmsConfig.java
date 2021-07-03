@@ -31,7 +31,7 @@ public class JmsConfig {
 		factory.setConnectionFactory(connectionFactory);
 		return factory;
 	}
-	
+
 	@Bean
 	public JmsListenerContainerFactory<?> jmsListenerContainerTopic(ConnectionFactory connectionFactory) {
 		var factory = new DefaultJmsListenerContainerFactory();

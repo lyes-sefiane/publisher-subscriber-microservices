@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lsefiane.common.entities.Order;
-import com.lsefiane.publisher.dto.MessageDto;
+import com.lsefiane.publisher.dto.OrderDto;
 import com.lsefiane.publisher.service.PublisherService;
 
 /**
@@ -29,8 +29,8 @@ public class PublisherRestController {
 	private PublisherService publisherService;
 
 	@PostMapping("publish/virtual-topic")
-	public Order publishToVirtualTopic(@RequestBody @Valid MessageDto messageDto) {
-		return publisherService.sendMessageToVirtualTopic(messageDto);
+	public Order publishToVirtualTopic(@RequestBody @Valid OrderDto orderDto) {
+		return publisherService.sendMessageToVirtualTopic(orderDto);
 	}
 
 }

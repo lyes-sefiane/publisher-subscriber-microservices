@@ -2,12 +2,13 @@ package com.lsefiane.publisher.converter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import com.lsefiane.common.entities.Order;
-import com.lsefiane.publisher.dto.MessageDto;
+import com.lsefiane.publisher.dto.OrderDto;
 
 /**
  * 
@@ -19,12 +20,12 @@ import com.lsefiane.publisher.dto.MessageDto;
  *
  */
 @Component
-public class DtoToEntityConverter implements Converter<MessageDto, Order> {
+public class DtoToEntityConverter implements Converter<OrderDto, Order> {
 
 	@Override
-	public Order convert(MessageDto messageDto) {
+	public Order convert(OrderDto orderDto) {
 		return Order.builder()//
-				.messageBody(messageDto.getMessageBody())//
+				.id(UUID.randomUUID()).description(orderDto.getDescription())//
 				.timestamp(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")//
 						.format(LocalDateTime.now()))//
 				.build();

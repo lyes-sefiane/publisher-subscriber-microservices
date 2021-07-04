@@ -1,5 +1,7 @@
 package com.lsefiane.common.entities;
 
+import java.util.UUID;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -26,7 +28,8 @@ import lombok.ToString;
 @ToString
 public class Order {
 
+	private UUID id;
 	private String timestamp;
-	private String messageBody;
+	private String description;
 
 }

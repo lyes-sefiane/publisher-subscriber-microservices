@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.lsefiane.common.entities.Order;
 import com.lsefiane.publisher.converter.DtoToEntityConverter;
-import com.lsefiane.publisher.dto.MessageDto;
+import com.lsefiane.publisher.dto.OrderDto;
 import com.lsefiane.publisher.jms.JmsSender;
 
 /**
@@ -26,9 +26,9 @@ public class PublisherService {
 	@Autowired
 	private DtoToEntityConverter converter;
 
-	public Order sendMessageToVirtualTopic(MessageDto messageDto) {
-		var message = converter.convert(messageDto);
-		jmsSender.sendMessageToVirtualTopic(message);
-		return message;
+	public Order sendMessageToVirtualTopic(OrderDto orderDto) {
+		var order = converter.convert(orderDto);
+		jmsSender.sendMessageToVirtualTopic(order);
+		return order;
 	}
 }

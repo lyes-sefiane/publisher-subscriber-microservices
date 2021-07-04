@@ -11,7 +11,7 @@ import lombok.ToString;
 
 /**
  * 
- * MessageDto.java
+ * OrderDto.java
  *
  * @author Lyes Sefiane
  * @email lyes.sefiane@gmail.com
@@ -24,9 +24,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class MessageDto {
-	
+public class OrderDto {
+
 	@NotBlank(message = "message body should not be empty")
-	private String messageBody;
+	private String description;
 
 }

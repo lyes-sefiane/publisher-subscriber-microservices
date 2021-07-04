@@ -50,7 +50,7 @@ POST : localhost:8080/publisher/publish/virtual-topic
 
 Body
 {
-    "messageBody": "Hello Virtual Topic !"
+    "description": "description sample..."
 }
 
 ```

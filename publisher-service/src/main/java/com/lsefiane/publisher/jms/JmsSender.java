@@ -7,6 +7,8 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 import com.lsefiane.common.entities.Message;
+import com.lsefiane.common.enums.MessageStatus;
+import com.lsefiane.publisher.jms.postprocess.CustomMessagePostProcessor;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,7 +34,7 @@ public class JmsSender {
 	private String virtualTopicMessage;
 
 	public void sendMessageToVirtualTopic(Message message) {
+		jmsTemplate.convertAndSend(new ActiveMQTopic(virtualTopicMessage), message, new CustomMessagePostProcessor(MessageStatus.NEW));
 		log.info(SENDING_TO, message, virtualTopicMessage);
-		jmsTemplate.convertAndSend(new ActiveMQTopic(virtualTopicMessage), message);
 	}
 }

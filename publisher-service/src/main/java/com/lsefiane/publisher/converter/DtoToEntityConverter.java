@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import com.lsefiane.common.entities.Message;
+import com.lsefiane.common.entities.Order;
 import com.lsefiane.publisher.dto.MessageDto;
 
 /**
@@ -19,11 +19,11 @@ import com.lsefiane.publisher.dto.MessageDto;
  *
  */
 @Component
-public class DtoToEntityConverter implements Converter<MessageDto, Message> {
+public class DtoToEntityConverter implements Converter<MessageDto, Order> {
 
 	@Override
-	public Message convert(MessageDto messageDto) {
-		return Message.builder()//
+	public Order convert(MessageDto messageDto) {
+		return Order.builder()//
 				.messageBody(messageDto.getMessageBody())//
 				.timestamp(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")//
 						.format(LocalDateTime.now()))//

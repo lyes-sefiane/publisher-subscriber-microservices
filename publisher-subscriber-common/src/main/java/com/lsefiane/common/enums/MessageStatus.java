@@ -17,7 +17,8 @@ public enum MessageStatus {
 	
 	NEW("Create"), //
 	UPDATE("Update"),//
-	DELETE("Delete");
+	DELETE("Delete"),
+	UNKNOWN("Unknown");
 	
 	private static final Map<String, MessageStatus> mapOfEnumsByValue = Arrays.stream(MessageStatus.values()).collect(Collectors.toMap(entry -> entry.value, entry -> entry));
 	

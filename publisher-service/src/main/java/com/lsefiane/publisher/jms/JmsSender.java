@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
-import com.lsefiane.common.entities.Message;
+import com.lsefiane.common.entities.Order;
 import com.lsefiane.common.enums.MessageStatus;
 import com.lsefiane.publisher.jms.postprocess.CustomMessagePostProcessor;
 
@@ -30,11 +30,11 @@ public class JmsSender {
 	@Autowired
 	private JmsTemplate jmsTemplate;
 
-	@Value("${activemq.virtual.topic.message}")
-	private String virtualTopicMessage;
+	@Value("${activemq.virtual.topic.order}")
+	private String virtualTopicOrder;
 
-	public void sendMessageToVirtualTopic(Message message) {
-		jmsTemplate.convertAndSend(new ActiveMQTopic(virtualTopicMessage), message, new CustomMessagePostProcessor(MessageStatus.NEW));
-		log.info(SENDING_TO, message, virtualTopicMessage);
+	public void sendMessageToVirtualTopic(Order order) {
+		jmsTemplate.convertAndSend(new ActiveMQTopic(virtualTopicOrder), order, new CustomMessagePostProcessor(MessageStatus.NEW));
+		log.info(SENDING_TO, order, virtualTopicOrder);
 	}
 }

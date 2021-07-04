@@ -10,7 +10,7 @@ import lombok.ToString;
 
 /**
  * 
- * Message.java
+ * Order.java
  *
  * @author Lyes Sefiane
  * @email lyes.sefiane@gmail.com
@@ -24,7 +24,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @Builder
 @ToString
-public class Message {
+public class Order {
 
 	private String timestamp;
 	private String messageBody;

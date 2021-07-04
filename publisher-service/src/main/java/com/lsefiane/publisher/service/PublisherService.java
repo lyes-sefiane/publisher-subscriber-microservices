@@ -3,7 +3,7 @@ package com.lsefiane.publisher.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lsefiane.common.entities.Message;
+import com.lsefiane.common.entities.Order;
 import com.lsefiane.publisher.converter.DtoToEntityConverter;
 import com.lsefiane.publisher.dto.MessageDto;
 import com.lsefiane.publisher.jms.JmsSender;
@@ -26,7 +26,7 @@ public class PublisherService {
 	@Autowired
 	private DtoToEntityConverter converter;
 
-	public Message sendMessageToVirtualTopic(MessageDto messageDto) {
+	public Order sendMessageToVirtualTopic(MessageDto messageDto) {
 		var message = converter.convert(messageDto);
 		jmsSender.sendMessageToVirtualTopic(message);
 		return message;

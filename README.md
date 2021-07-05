@@ -4,11 +4,11 @@
 
 [lsefiane/publisher-subscriber-microservices/wiki/Event-Driven-Microservices](https://github.com/lsefiane/publisher-subscriber-microservices/wiki/Event-Driven-Microservices)
 
-## Architecture
+## [Architecture](https://github.com/lsefiane/publisher-subscriber-microservices/wiki/Architecture)
 
 ![Image](https://raw.githubusercontent.com/wiki/lsefiane/publisher-subscriber-microservices/images/PubSub%20Microservices%20Architecture.PNG)
 
-## Requirements
+## [Requirements](https://github.com/lsefiane/publisher-subscriber-microservices/wiki/Technology-Stack)
 
 ```
 1. Java 11.x.y
@@ -18,7 +18,7 @@
 3. Docker 3.x.y
 ```
 
-## Setup
+## [Setup](https://github.com/lsefiane/publisher-subscriber-microservices/wiki/Installation)
 
 ### Git Clone
 

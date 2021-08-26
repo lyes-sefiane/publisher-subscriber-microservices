@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 services:
    openzipkin-zipkin:
       image: openzipkin/zipkin:latest
@@ -14,7 +14,7 @@ services:
       restart: always
       build:
          context: .
-         dockerfile: ./docker/apache-activemq/5.16.2/Dockerfile
+         dockerfile: docker/apache-activemq/5.16.2-alpine/Dockerfile
       ports:
       - '8161:8161'
       - '61616:61616'
@@ -37,11 +37,13 @@ services:
       restart: always
       build:
          context: .
-         dockerfile: ./docker/gateway-service/Dockerfile
+         dockerfile: docker/gateway-service/Dockerfile
       ports:
       - '8080:8080'
       depends_on:
       - hashicorp-consul
+      volumes:
+         - gateway-service-vol:/app
       networks:
       - microservices
       environment:
@@ -56,10 +58,9 @@ services:
       restart: always
       build:
          context: .
-         dockerfile: ./docker/publisher-service/Dockerfile
-      deploy:
-         mode: replicated
-         replicas: 2
+         dockerfile: docker/publisher-service/Dockerfile
+      volumes:
+         -  publisher-service-vol:/app
       depends_on:
       - apache-activemq
       - hashicorp-consul
@@ -80,17 +81,16 @@ services:
       restart: always
       build:
          context: .
-         dockerfile: ./docker/subscriber-service/Dockerfile
-      deploy:
-         mode: replicated
-         replicas: 3
+         dockerfile: docker/subscriber-service/Dockerfile
+      volumes:
+         - subscriber-service-vol:/app
       depends_on:
       - apache-activemq
       - hashicorp-consul
       environment:
       - SPRING_ACTIVEMQ_BROKER_URL=${SPRING_ACTIVEMQ_BROKER_URL}
       - SPRING_ACTIVEMQ_USER=${SPRING_ACTIVEMQ_USER}
-      - SPRING_ACTIVEMQ_PASSWORD=${SPRING_ACTIVEMQ_PASSWORD}  
+      - SPRING_ACTIVEMQ_PASSWORD=${SPRING_ACTIVEMQ_PASSWORD}
       - SPRING_JMS_LISTENER_AUTO_STARTUP=${SPRING_JMS_LISTENER_AUTO_STARTUP}     
       - SPRING_CLOUD_CONSUL_ENABLED=${SPRING_CLOUD_CONSUL_ENABLED} 
       - SPRING_CLOUD_CONSUL_HOST=${SPRING_CLOUD_CONSUL_HOST}
@@ -98,7 +98,12 @@ services:
       - SPRING_ZIPKIN_BASE_URL=${SPRING_ZIPKIN_BASE_URL}
       networks:
       - microservices
+
+volumes:
+   publisher-service-vol:
+   subscriber-service-vol:
+   gateway-service-vol:
+
 networks:
    microservices:
-      driver: bridge
    

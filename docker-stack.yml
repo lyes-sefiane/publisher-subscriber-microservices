@@ -1,0 +1,135 @@
+version: '3.9'
+services:
+  visualizer:
+    image: bretfisher/visualizer:latest
+    ports:
+      - '5000:8080'
+    stop_grace_period: 1m30s
+    networks:
+      - miniSwarm
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+  openzipkin-zipkin:
+    image: openzipkin/zipkin:latest
+    container_name: openzipkin-zipkin
+    restart: always
+    ports:
+      - '9411:9411'
+    networks:
+      - miniSwarm
+  apache-activemq:
+    image: lsefiane/activemq:latest
+    container_name: apache-activemq
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/apache-activemq/5.16.2-alpine/Dockerfile
+    ports:
+      - '8161:8161'
+      - '61616:61616'
+    deploy:
+      placement:
+        constraints: [node.role != manager]
+    networks:
+      - miniSwarm
+  hashicorp-consul:
+    image: consul:latest
+    container_name: hashicorp-consul
+    command: agent -server -ui -bootstrap-expect=1 -client=0.0.0.0
+    restart: always
+    ports:
+      - '8500:8500'
+    networks:
+      - miniSwarm
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
+  gateway-service:
+    image: lsefiane/gateway-service:latest
+    container_name: gateway-service
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/gateway-service/Dockerfile
+    ports:
+      - '8080:8080'
+    depends_on:
+      - hashicorp-consul
+    networks:
+      - miniSwarm
+    environment:
+      - SPRING_CLOUD_CONSUL_ENABLED=${SPRING_CLOUD_CONSUL_ENABLED}
+      - SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_ENABLED=${SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_ENABLED}
+      - SPRING_CLOUD_CONSUL_HOST=${SPRING_CLOUD_CONSUL_HOST}
+      - SPRING_CLOUD_CONSUL_PORT=${SPRING_CLOUD_CONSUL_PORT}
+      - SPRING_ZIPKIN_ENABLED=${SPRING_ZIPKIN_ENABLED}
+      - SPRING_ZIPKIN_BASE_URL=${SPRING_ZIPKIN_BASE_URL}
+  publisher-service:
+    image: lsefiane/publisher-service:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/publisher-service/Dockerfile
+    deploy:
+      mode: replicated
+      replicas: 2
+    depends_on:
+      - apache-activemq
+      - hashicorp-consul
+    secrets:
+      - activemq_user
+      - activemq_password
+    environment:
+      - SPRING_ACTIVEMQ_BROKER_URL=${SPRING_ACTIVEMQ_BROKER_URL}
+      - SPRING_ACTIVEMQ_USER_FILE=/run/secrets/activemq_user
+      - SPRING_ACTIVEMQ_PASSWORD_FILE=/run/secrets/activemq_password
+      - SPRING_JMS_LISTENER_AUTO_STARTUP=${SPRING_JMS_LISTENER_AUTO_STARTUP}
+      - SPRING_CLOUD_CONSUL_ENABLED=${SPRING_CLOUD_CONSUL_ENABLED}
+      - SPRING_CLOUD_CONSUL_HOST=${SPRING_CLOUD_CONSUL_HOST}
+      - SPRING_CLOUD_CONSUL_PORT=${SPRING_CLOUD_CONSUL_PORT}
+      - SPRING_ZIPKIN_ENABLED=${SPRING_ZIPKIN_ENABLED}
+      - SPRING_ZIPKIN_BASE_URL=${SPRING_ZIPKIN_BASE_URL}
+    networks:
+      - miniSwarm
+  subscriber-service:
+    image: lsefiane/subscriber-service:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/subscriber-service/Dockerfile
+    deploy:
+      mode: replicated
+      replicas: 3
+    depends_on:
+      - apache-activemq
+      - hashicorp-consul
+    secrets:
+      - activemq_user
+      - activemq_password
+    environment:
+      - SPRING_ACTIVEMQ_BROKER_URL=${SPRING_ACTIVEMQ_BROKER_URL}
+      - SPRING_ACTIVEMQ_USER_FILE=/run/secrets/activemq_user
+      - SPRING_ACTIVEMQ_PASSWORD_FILE=/run/secrets/activemq_password
+      - SPRING_JMS_LISTENER_AUTO_STARTUP=${SPRING_JMS_LISTENER_AUTO_STARTUP}
+      - SPRING_CLOUD_CONSUL_ENABLED=${SPRING_CLOUD_CONSUL_ENABLED}
+      - SPRING_CLOUD_CONSUL_HOST=${SPRING_CLOUD_CONSUL_HOST}
+      - SPRING_ZIPKIN_ENABLED=${SPRING_ZIPKIN_ENABLED}
+      - SPRING_ZIPKIN_BASE_URL=${SPRING_ZIPKIN_BASE_URL}
+    networks:
+      - miniSwarm
+
+secrets:
+  activemq_user:
+    external: true
+  activemq_password:
+    external: true
+
+volumes:
+  publisher-service-vol:
+  subscriber-service-vol:
+  gateway-service-vol:
+
+networks:
+  miniSwarm:

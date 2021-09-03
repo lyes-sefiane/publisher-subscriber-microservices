@@ -9,7 +9,7 @@ services:
       networks:
       - microservices
    apache-activemq:
-      image: lsefiane/activemq:latest
+      image: lsefiane/activemq:5.16.2-alpine
       container_name: apache-activemq
       restart: always
       build:
@@ -43,7 +43,7 @@ services:
       depends_on:
       - hashicorp-consul
       volumes:
-         - gateway-service-vol:/app
+         - gateway-service-vol:/gateway-service
       networks:
       - microservices
       environment:
@@ -55,12 +55,13 @@ services:
       - SPRING_ZIPKIN_BASE_URL=${SPRING_ZIPKIN_BASE_URL}      
    publisher-service:
       image: lsefiane/publisher-service:latest
+      container_name: publisher-service
       restart: always
       build:
          context: .
          dockerfile: docker/publisher-service/Dockerfile
       volumes:
-         -  publisher-service-vol:/app
+         -  publisher-service-vol:/publisher-service
       depends_on:
       - apache-activemq
       - hashicorp-consul
@@ -78,12 +79,13 @@ services:
       - microservices
    subscriber-service:
       image: lsefiane/subscriber-service:latest
+      container_name: subscriber-service
       restart: always
       build:
          context: .
          dockerfile: docker/subscriber-service/Dockerfile
       volumes:
-         - subscriber-service-vol:/app
+         - subscriber-service-vol:/subscriber-service
       depends_on:
       - apache-activemq
       - hashicorp-consul

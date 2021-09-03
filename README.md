@@ -24,23 +24,18 @@
 
 ```
 https://github.com/lyes-s/publisher-subscriber-microservices.git
-
 ```
 
-### Maven Build
+### Project Directory
 
 ```
 cd publisher-subscriber-microservices/
-
-mvn clean install
-
 ```
 
-### Docker Compose
+### Development Environment
 
 ```
-docker-compose --env-file .env up -d
-
+docker-compose --env-file .env up --build -d
 ```
 
 ## [Testing](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Testing)
@@ -52,7 +47,6 @@ Body
 {
     "description": "description sample..."
 }
-
 ```
 
 ## Enhancements

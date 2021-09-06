@@ -7,6 +7,8 @@ FROM amazoncorretto:11-alpine
 LABEL maintainer=lyes.sefiane@gmail.com
 WORKDIR ./subscriber-service
 COPY --from=builder /publisher-subscriber-microserices/subscriber-service/target/subscriber-service-0.0.1-SNAPSHOT-jar-with-dependencies.jar /subscriber-service/subscriber-service.jar
-RUN rm -rf /publisher-subscriber-microserices
+RUN apk add --update curl && \
+        rm -rf /var/cache/apk/* && \
+        rm -rf /publisher-subscriber-microserices
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","subscriber-service.jar"]

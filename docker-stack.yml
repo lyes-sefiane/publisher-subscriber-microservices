@@ -12,49 +12,51 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
+      restart_policy:
+        condition: on-failure
   openzipkin-zipkin:
     image: openzipkin/zipkin:latest
-    container_name: openzipkin-zipkin
-    restart: always
     ports:
       - '9411:9411'
+    deploy:
+      restart_policy:
+        condition: on-failure
     networks:
       - miniSwarm
   apache-activemq:
-    image: lsefiane/activemq:latest
-    container_name: apache-activemq
-    restart: always
-    build:
-      context: .
-      dockerfile: docker/apache-activemq/5.16.2-alpine/Dockerfile
+    image: lsefiane/activemq:5.16.2-alpine
     ports:
       - '8161:8161'
       - '61616:61616'
     deploy:
       placement:
-        constraints: [node.role != manager]
+        constraints: [node.role == manager]
     networks:
       - miniSwarm
   hashicorp-consul:
     image: consul:latest
-    container_name: hashicorp-consul
     command: agent -server -ui -bootstrap-expect=1 -client=0.0.0.0
-    restart: always
     ports:
       - '8500:8500'
+    deploy:
+      restart_policy:
+        condition: on-failure
     networks:
       - miniSwarm
     environment:
       - CONSUL_BIND_INTERFACE=eth0
   gateway-service:
     image: lsefiane/gateway-service:latest
-    container_name: gateway-service
-    restart: always
-    build:
-      context: .
-      dockerfile: docker/gateway-service/Dockerfile
     ports:
       - '8080:8080'
+    deploy:
+      restart_policy:
+        condition: on-failure
+    healthcheck:
+      test: curl --fail -s http://localhost:8080/actuator/health || exit 1
+      interval: 25s
+      timeout: 3s
+      retries: 3
     depends_on:
       - hashicorp-consul
     networks:
@@ -68,13 +70,19 @@ services:
       - SPRING_ZIPKIN_BASE_URL=${SPRING_ZIPKIN_BASE_URL}
   publisher-service:
     image: lsefiane/publisher-service:latest
-    restart: always
-    build:
-      context: .
-      dockerfile: docker/publisher-service/Dockerfile
     deploy:
       mode: replicated
       replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 25s
+      timeout: 3s
+      retries: 3
     depends_on:
       - apache-activemq
       - hashicorp-consul
@@ -95,13 +103,19 @@ services:
       - miniSwarm
   subscriber-service:
     image: lsefiane/subscriber-service:latest
-    restart: always
-    build:
-      context: .
-      dockerfile: docker/subscriber-service/Dockerfile
     deploy:
       mode: replicated
       replicas: 3
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    healthcheck:
+      test: curl --fail http:/localhost:8080/actuator/health || exit 1
+      interval: 25s
+      timeout: 3s
+      retries: 3
     depends_on:
       - apache-activemq
       - hashicorp-consul

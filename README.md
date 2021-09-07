@@ -21,20 +21,18 @@
 3. Docker 3.x.y
 ```
 
-## Setup
-
-### Git Clone
+## Git Clone
 ```
 https://github.com/lyes-s/publisher-subscriber-microservices.git
 ```
 
-### Project Directory
+## Project Directory
 
 ```
 cd publisher-subscriber-microservices/
 ```
 
-### Development Environment
+## Development Environment
 
 * [lyes-s/publisher-subscriber-microservices/wiki/Development-Environment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Development-Environment)
 
@@ -42,7 +40,7 @@ cd publisher-subscriber-microservices/
 docker-compose --env-file .env up --build -d
 ```
 
-### Orchestration with Docker Swarm
+## Orchestration with Docker Swarm
 
 * [lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment)
 

@@ -1,15 +1,18 @@
 # Publisher/Subscriber Microservices Sample
 
 ## Wiki
+* [lyes-s/publisher-subscriber-microservices/wiki/Event-Driven-Microservices](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Event-Driven-Microservices)
 
-[lyes-s/publisher-subscriber-microservices/wiki/Event-Driven-Microservices](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Event-Driven-Microservices)
+## Architecture
 
-## [Architecture](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Architecture)
+* [lyes-s/publisher-subscriber-microservices/wiki/Architecture](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Architecture)
 
 ![Image](https://raw.githubusercontent.com/wiki/lyes-s/publisher-subscriber-microservices/images/PubSub%20Microservices%20Architecture.PNG)
 
-## [Requirements](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Technology-Stack)
+## Technology Stack
+* [lyes-s/publisher-subscriber-microservices/wiki/Technology-Stack](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Technology-Stack)
 
+## Requirements
 ```
 1. Java 11.x.y
 
@@ -18,10 +21,9 @@
 3. Docker 3.x.y
 ```
 
-## [Setup](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Installation)
+## Setup
 
 ### Git Clone
-
 ```
 https://github.com/lyes-s/publisher-subscriber-microservices.git
 ```
@@ -34,20 +36,23 @@ cd publisher-subscriber-microservices/
 
 ### Development Environment
 
+* [lyes-s/publisher-subscriber-microservices/wiki/Development-Environment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Development-Environment)
+
 ```
 docker-compose --env-file .env up --build -d
 ```
 
-## [Testing](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Testing)
+### Orchestration with Docker Swarm
+
+* [lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment)
 
 ```
-POST : localhost:8080/publisher/publish/virtual-topic
-
-Body
-{
-    "description": "description sample..."
-}
+docker stack deploy -c docker-stack.yml stack
 ```
+
+## Testing
+* [lyes-s/publisher-subscriber-microservices/wiki/Testing](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Testing)
+
 
 ## Enhancements
 

@@ -40,6 +40,10 @@ cd publisher-subscriber-microservices/
 docker-compose --env-file .env up --build -d
 ```
 
+## Developmental Test & Evaluation
+* [lyes-s/publisher-subscriber-microservices/wiki/Developmental-Test-&-Evaluation](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Developmental-Test-&-Evaluation)
+
+
 ## Orchestration with Docker Swarm
 
 * [lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment)
@@ -47,10 +51,6 @@ docker-compose --env-file .env up --build -d
 ```
 docker stack deploy -c docker-stack.yml stack
 ```
-
-## Testing
-* [lyes-s/publisher-subscriber-microservices/wiki/Testing](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Testing)
-
 
 ## Enhancements
 

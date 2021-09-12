@@ -48,6 +48,8 @@ docker-compose --env-file .env up --build -d
 
 * [lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment)
 
+![Image](https://raw.githubusercontent.com/wiki/lsefiane/publisher-subscriber-microservices/images/docker-swarm-visualizer.PNG)
+
 ### Environment Variables Export
 ```
 export SPRING_ACTIVEMQ_BROKER_URL=tcp://apache-activemq:61616 \

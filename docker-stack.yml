@@ -19,6 +19,8 @@ services:
     ports:
       - '9411:9411'
     deploy:
+      placement:
+        constraints: [ node.role == manager ]
       restart_policy:
         condition: on-failure
     networks:
@@ -30,7 +32,7 @@ services:
       - '61616:61616'
     deploy:
       placement:
-        constraints: [node.role == manager]
+        constraints: [node.role != manager]
     networks:
       - miniSwarm
   hashicorp-consul:
@@ -39,6 +41,8 @@ services:
     ports:
       - '8500:8500'
     deploy:
+      placement:
+        constraints: [ node.role == manager ]
       restart_policy:
         condition: on-failure
     networks:
@@ -50,6 +54,8 @@ services:
     ports:
       - '8080:8080'
     deploy:
+      placement:
+        constraints: [ node.role != manager ]
       restart_policy:
         condition: on-failure
     healthcheck:
@@ -76,6 +82,8 @@ services:
       update_config:
         parallelism: 2
         delay: 10s
+      placement:
+        constraints: [ node.role != manager ]
       restart_policy:
         condition: on-failure
     healthcheck:
@@ -109,6 +117,8 @@ services:
       update_config:
         parallelism: 2
         delay: 10s
+      placement:
+        constraints: [ node.role != manager ]
       restart_policy:
         condition: on-failure
     healthcheck:

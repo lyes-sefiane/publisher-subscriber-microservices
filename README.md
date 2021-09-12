@@ -48,6 +48,24 @@ docker-compose --env-file .env up --build -d
 
 * [lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment)
 
+### Environment Variables Export
+```
+export SPRING_ACTIVEMQ_BROKER_URL=tcp://apache-activemq:61616 \
+export SPRING_JMS_LISTENER_AUTO_STARTUP=true \
+export SPRING_CLOUD_CONSUL_ENABLED=true \
+export SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_ENABLED=true \
+export SPRING_CLOUD_CONSUL_HOST=http://hashicorp-consul \
+export SPRING_CLOUD_CONSUL_PORT=8500 \
+export SPRING_ZIPKIN_ENABLED=true \
+export SPRING_ZIPKIN_BASE_URL=http://openzipkin-zipkin:9411
+```
+### Secrets Creation
+```
+echo "admin" | docker secret create activemq_user -
+echo "admin" | docker secret create activemq_password -
+```
+
+### Stack Deployment
 ```
 docker stack deploy -c docker-stack.yml stack
 ```

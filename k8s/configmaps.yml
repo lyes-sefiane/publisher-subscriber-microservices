@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+  namespace: k8s-dev
+data:
+  SPRING_ACTIVEMQ_BROKER_URL: "tcp://apache-activemq:61616"
+  SPRING_JMS_LISTENER_AUTO_STARTUP: "true"
+  SPRING_ZIPKIN_ENABLED: "true"
+  SPRING_ZIPKIN_BASE_URL: "http://openzipkin-zipkin:9411"
+immutable: true
+

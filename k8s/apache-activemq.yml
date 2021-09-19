@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache-activemq
+  namespace: k8s-dev
+  labels:
+    app: apache-activemq
+spec:
+  selector:
+    app: apache-activemq
+  ports:
+    - name: "8161"
+      port: 8161
+      targetPort: 8161
+    - name: "61616"
+      port: 61616
+      targetPort: 61616
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-activemq
+  namespace: k8s-dev
+  labels:
+    app: apache-activemq
+spec:
+  selector:
+    matchLabels:
+      app: apache-activemq
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: apache-activemq
+    spec:
+      containers:
+        - name: apache-activemq
+          image: lsefiane/activemq:5.16.2-alpine
+          ports:
+            - containerPort: 8161
+            - containerPort: 61616

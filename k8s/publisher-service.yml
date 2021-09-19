@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: publisher-service
+  namespace: k8s-dev
+  labels:
+    app: publisher-service
+spec:
+  selector:
+    app: publisher-service
+  ports:
+    - name: "8080"
+      port: 8080
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publisher-service
+  namespace: k8s-dev
+  labels:
+    app: publisher-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: publisher-service
+  template:
+    metadata:
+      labels:
+        app: publisher-service
+    spec:
+      containers:
+        - image: lsefiane/publisher-service:latest
+          name: publisher-service
+          env:
+            - name: SPRING_ACTIVEMQ_BROKER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: SPRING_ACTIVEMQ_BROKER_URL
+
+            - name: SPRING_ACTIVEMQ_USER
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: SPRING_ACTIVEMQ_USER
+
+            - name: SPRING_ACTIVEMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: SPRING_ACTIVEMQ_PASSWORD
+
+            - name: SPRING_ZIPKIN_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: SPRING_ZIPKIN_BASE_URL
+
+            - name: SPRING_ZIPKIN_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: SPRING_ZIPKIN_ENABLED

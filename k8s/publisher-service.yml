@@ -37,7 +37,7 @@ spec:
             - name: SPRING_ACTIVEMQ_BROKER_URL
               valueFrom:
                 configMapKeyRef:
-                  name: config
+                  name: publisher-subscriber-config
                   key: SPRING_ACTIVEMQ_BROKER_URL
 
             - name: SPRING_ACTIVEMQ_USER
@@ -55,11 +55,11 @@ spec:
             - name: SPRING_ZIPKIN_BASE_URL
               valueFrom:
                 configMapKeyRef:
-                  name: config
+                  name: publisher-subscriber-config
                   key: SPRING_ZIPKIN_BASE_URL
 
             - name: SPRING_ZIPKIN_ENABLED
               valueFrom:
                 configMapKeyRef:
-                  name: config
+                  name: publisher-subscriber-config
                   key: SPRING_ZIPKIN_ENABLED

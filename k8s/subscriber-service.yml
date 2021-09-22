@@ -21,7 +21,7 @@ metadata:
   labels:
     app: subscriber-service
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: subscriber-service

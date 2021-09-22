@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: config
+  name: publisher-subscriber-config
   namespace: k8s-dev
 data:
   SPRING_ACTIVEMQ_BROKER_URL: "tcp://apache-activemq:61616"

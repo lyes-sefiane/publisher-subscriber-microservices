@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
-  name: ingress
+  name: publisher-subscriber-ingress
   namespace: k8s-dev
 spec:
   rules:

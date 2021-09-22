@@ -4,7 +4,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
   name: publisher-subscriber-ingress
-  namespace: k8s-dev
+  namespace: k8s
 spec:
   rules:
     - host: publisher-subscriber.com

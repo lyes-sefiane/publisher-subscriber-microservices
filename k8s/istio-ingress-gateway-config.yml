@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: publisher-service-gateway
+  namespace: k8s
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - '*'
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: publisher-service
+  namespace: k8s
+spec:
+  hosts:
+    - '*'
+  gateways:
+    - publisher-service-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /publisher
+      route:
+        - destination:
+            host: publisher-service
+            port:
+              number: 8080

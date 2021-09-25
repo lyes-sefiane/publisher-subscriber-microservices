@@ -1,13 +1,7 @@
-# Publisher/Subscriber Microservices Sample
+# Publisher/Subscriber Microservices
 
 ## Wiki
 * [lyes-s/publisher-subscriber-microservices/wiki/Event-Driven-Microservices](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Event-Driven-Microservices)
-
-## Architecture
-
-* [lyes-s/publisher-subscriber-microservices/wiki/Architecture](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Architecture)
-
-![Image](https://raw.githubusercontent.com/wiki/lyes-s/publisher-subscriber-microservices/images/PubSub%20Microservices%20Architecture.PNG)
 
 ## Technology Stack
 * [lyes-s/publisher-subscriber-microservices/wiki/Technology-Stack](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Technology-Stack)
@@ -26,12 +20,6 @@
 https://github.com/lyes-s/publisher-subscriber-microservices.git
 ```
 
-## Project Directory
-
-```
-cd publisher-subscriber-microservices/
-```
-
 ## Development Environment
 
 * [lyes-s/publisher-subscriber-microservices/wiki/Development-Environment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Development-Environment)
@@ -40,36 +28,32 @@ cd publisher-subscriber-microservices/
 docker-compose --env-file .env up --build -d
 ```
 
+![Image](https://raw.githubusercontent.com/wiki/lyes-s/publisher-subscriber-microservices/images/Dev-Mode.PNG)
+
 ## Developmental Test & Evaluation
 * [lyes-s/publisher-subscriber-microservices/wiki/Developmental-Test-&-Evaluation](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Developmental-Test-&-Evaluation)
-
 
 ## Orchestration with Docker Swarm
 
 * [lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment)
 
+![Image](https://raw.githubusercontent.com/wiki/lyes-s/publisher-subscriber-microservices/images/Orchestration-Swarm.PNG)
+
 ![Image](https://raw.githubusercontent.com/wiki/lsefiane/publisher-subscriber-microservices/images/docker-swarm-visualizer.PNG)
 
-### Environment Variables Export
-```
-export SPRING_ACTIVEMQ_BROKER_URL=tcp://apache-activemq:61616 \
-export SPRING_JMS_LISTENER_AUTO_STARTUP=true \
-export SPRING_CLOUD_CONSUL_ENABLED=true \
-export SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_ENABLED=true \
-export SPRING_CLOUD_CONSUL_HOST=http://hashicorp-consul \
-export SPRING_CLOUD_CONSUL_PORT=8500 \
-export SPRING_ZIPKIN_ENABLED=true \
-export SPRING_ZIPKIN_BASE_URL=http://openzipkin-zipkin:9411
-```
-### Secrets Creation
-```
-echo "admin" | docker secret create activemq_user -
-echo "admin" | docker secret create activemq_password -
-```
-
-### Stack Deployment
+### Deployment
 ```
 docker stack deploy -c docker-stack.yml stack
+```
+## Orchestration with Kubernetes
+
+![Image](https://raw.githubusercontent.com/wiki/lsefiane/publisher-subscriber-microservices/images/kubernetes-cluster.PNG)
+
+![Image](https://raw.githubusercontent.com/wiki/lsefiane/publisher-subscriber-microservices/images/kubernetes-deployment.PNG)
+
+### Deployment
+```
+kubectl apply -f k8s/
 ```
 
 ## Enhancements

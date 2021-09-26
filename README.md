@@ -35,7 +35,7 @@ docker-compose --env-file .env up --build -d
 
 ## Orchestration with Docker Swarm
 
-* [lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment)
+* [lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm)
 
 ![Image](https://raw.githubusercontent.com/wiki/lyes-s/publisher-subscriber-microservices/images/Orchestration-Swarm.PNG)
 
@@ -46,6 +46,8 @@ docker-compose --env-file .env up --build -d
 docker stack deploy -c docker-stack.yml stack
 ```
 ## Orchestration with Kubernetes
+
+* [lyes-s/publisher-subscriber-microservices/wiki/Kubernetes](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Kubernetes)
 
 ![Image](https://raw.githubusercontent.com/wiki/lsefiane/publisher-subscriber-microservices/images/kubernetes-cluster.PNG)
 

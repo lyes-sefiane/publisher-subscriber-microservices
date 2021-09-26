@@ -35,7 +35,7 @@ docker-compose --env-file .env up --build -d
 
 ## Orchestration with Docker Swarm
 
-* [lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm-Deployment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm)
+* [lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm)
 
 ![Image](https://raw.githubusercontent.com/wiki/lyes-s/publisher-subscriber-microservices/images/Orchestration-Swarm.PNG)
 

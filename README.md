@@ -10,11 +10,17 @@
 [cc-by-nc-nd-image]: https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png
 [cc-by-nc-nd-shield]: https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg
 
+## GitHub Badges
+
+![GitHub Repo stars](https://img.shields.io/github/stars/lyes-sefiane/publisher-subscriber-microservices?style=social)
+![GitHub top language](https://img.shields.io/github/languages/top/lyes-sefiane/publisher-subscriber-microservices)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/y/lyes-sefiane/publisher-subscriber-microservices/master)
+
 ## Wiki
-* [lyes-s/publisher-subscriber-microservices/wiki/Event-Driven-Microservices](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Event-Driven-Microservices)
+* [lyes-sefiane/publisher-subscriber-microservices/wiki/event-driven-microservices](https://github.com/lyes-sefiane/publisher-subscriber-microservices/wiki/Event-Driven-Microservices)
 
 ## Technology Stack
-* [lyes-s/publisher-subscriber-microservices/wiki/Technology-Stack](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Technology-Stack)
+* [lyes-sefiane/publisher-subscriber-microservices/wiki/technology-stack](https://github.com/lyes-sefiane/publisher-subscriber-microservices/wiki/Technology-Stack)
 
 ## Requirements
 ```
@@ -27,29 +33,29 @@
 
 ## Git Clone
 ```
-https://github.com/lyes-s/publisher-subscriber-microservices.git
+https://github.com/lyes-sefiane/publisher-subscriber-microservices.git
 ```
 
 ## Development Environment
 
-* [lyes-s/publisher-subscriber-microservices/wiki/Development-Environment](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Development-Environment)
+* [lyes-sefiane/publisher-subscriber-microservices/wiki/development-environment](https://github.com/lyes-sefiane/publisher-subscriber-microservices/wiki/Development-Environment)
 
 ```
 docker-compose --env-file .env up --build -d
 ```
 
-![Image](https://raw.githubusercontent.com/wiki/lyes-s/publisher-subscriber-microservices/images/Dev-Mode.PNG)
+![Image](https://raw.githubusercontent.com/wiki/lyes-sefiane/publisher-subscriber-microservices/images/Dev-Mode.PNG)
 
 ## Developmental Test & Evaluation
-* [lyes-s/publisher-subscriber-microservices/wiki/Developmental-Test-&-Evaluation](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Developmental-Test-&-Evaluation)
+* [lyes-sefiane/publisher-subscriber-microservices/wiki/developmental-test-and-evaluation](https://github.com/lyes-sefiane/publisher-subscriber-microservices/wiki/Developmental-Test-&-Evaluation)
 
 ## Orchestration with Docker Swarm
 
-* [lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Docker-Swarm)
+* [lyes-sefiane/publisher-subscriber-microservices/wiki/docker-swarm](https://github.com/lyes-sefiane/publisher-subscriber-microservices/wiki/Docker-Swarm)
 
-![Image](https://raw.githubusercontent.com/wiki/lyes-s/publisher-subscriber-microservices/images/Orchestration-Swarm.PNG)
+![Image](https://raw.githubusercontent.com/wiki/lyes-sefiane/publisher-subscriber-microservices/images/Orchestration-Swarm.PNG)
 
-![Image](https://raw.githubusercontent.com/wiki/lsefiane/publisher-subscriber-microservices/images/docker-swarm-visualizer.PNG)
+![Image](https://raw.githubusercontent.com/wiki/lyes-sefiane/publisher-subscriber-microservices/images/docker-swarm-visualizer.PNG)
 
 ### Deployment
 ```
@@ -57,11 +63,11 @@ docker stack deploy -c docker-stack.yml stack
 ```
 ## Orchestration with Kubernetes
 
-* [lyes-s/publisher-subscriber-microservices/wiki/Kubernetes](https://github.com/lyes-s/publisher-subscriber-microservices/wiki/Kubernetes)
+* [lyes-sefiane/publisher-subscriber-microservices/wiki/kubernetes](https://github.com/lyes-sefiane/publisher-subscriber-microservices/wiki/Kubernetes)
 
-![Image](https://raw.githubusercontent.com/wiki/lsefiane/publisher-subscriber-microservices/images/kubernetes-cluster.PNG)
+![Image](https://raw.githubusercontent.com/wiki/lyes-sefiane/publisher-subscriber-microservices/images/kubernetes-cluster.PNG)
 
-![Image](https://raw.githubusercontent.com/wiki/lsefiane/publisher-subscriber-microservices/images/kubernetes-deployment.PNG)
+![Image](https://raw.githubusercontent.com/wiki/lyes-sefiane/publisher-subscriber-microservices/images/kubernetes-deployment.PNG)
 
 ### Deployment
 ```

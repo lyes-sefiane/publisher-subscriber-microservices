@@ -13,6 +13,7 @@
 ## GitHub Badges
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/lyes-sefiane/publisher-subscriber-microservices?style=social)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/lyes-sefiane/publisher-subscriber-microservices/maven.yml?branch=master)
 ![GitHub top language](https://img.shields.io/github/languages/top/lyes-sefiane/publisher-subscriber-microservices)
 ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/y/lyes-sefiane/publisher-subscriber-microservices/master)
 

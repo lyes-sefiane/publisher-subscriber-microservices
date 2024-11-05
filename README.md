@@ -16,10 +16,8 @@
 [![Dependabot Updates](https://github.com/lyes-sefiane/publisher-subscriber-microservices/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/lyes-sefiane/publisher-subscriber-microservices/actions/workflows/dependabot/dependabot-updates)
 [![CodeQL](https://github.com/lyes-sefiane/publisher-subscriber-microservices/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/lyes-sefiane/publisher-subscriber-microservices/actions/workflows/github-code-scanning/codeql)
 [![Automatic Dependency Submission](https://github.com/lyes-sefiane/publisher-subscriber-microservices/actions/workflows/dependency-graph/auto-submission/badge.svg)](https://github.com/lyes-sefiane/publisher-subscriber-microservices/actions/workflows/dependency-graph/auto-submission)
-
 ![GitHub Repo stars](https://img.shields.io/github/stars/lyes-sefiane/publisher-subscriber-microservices?style=social)
 ![GitHub top language](https://img.shields.io/github/languages/top/lyes-sefiane/publisher-subscriber-microservices)
-![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/y/lyes-sefiane/publisher-subscriber-microservices/main)
 
 ## Documentation
 

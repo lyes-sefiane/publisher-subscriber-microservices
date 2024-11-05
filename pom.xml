@@ -18,5 +18,4 @@
 		<module>subscriber-service</module>
 		<module>gateway-service</module>
 	</modules>
-
 </project>

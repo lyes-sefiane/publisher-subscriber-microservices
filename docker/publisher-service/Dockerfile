@@ -1,4 +1,4 @@
-FROM maven:3-amazoncorretto-11 as builder
+FROM maven:3-amazoncorretto-17 as builder
 WORKDIR /publisher-subscriber-microserices
 COPY .  /publisher-subscriber-microserices
 RUN mvn clean install --projects publisher-service --also-make

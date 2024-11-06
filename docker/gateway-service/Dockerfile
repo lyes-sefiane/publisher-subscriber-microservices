@@ -1,4 +1,4 @@
-FROM maven:3-amazoncorretto-11 as builder
+FROM maven:3-amazoncorretto-17 as builder
 WORKDIR /gateway-service/workspace
 COPY gateway-service/pom.xml  /gateway-service/workspace
 COPY gateway-service/src  /gateway-service/workspace/src

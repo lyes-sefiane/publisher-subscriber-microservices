@@ -21,7 +21,7 @@
 
 ## Documentation
 
-* [Applied Event Driven Architecture in a Context of Microservices](https://github.com/lyes-sefiane/publisher-subscriber-microservices/wiki/Event-Driven-Microservices)
+* [Event‐driven Architecture using Apache ActiveMQ Documentation](https://github.com/lyes-sefiane/publisher-subscriber-microservices/wiki/Event%E2%80%90driven-Architecture-using-Apache-ActiveMQ)
 
 
 ## Infrastructure
